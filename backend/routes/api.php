@@ -20,4 +20,5 @@ Route::group(['middleware' => ['cors','auth:api']], function () {
 	Route::get('me','API\UserController@getMe');
 	Route::post('logout','API\UserController@logoutApi');
     Route::resource('book', 'API\BookController');
+    Route::resource('event', 'API\EventController');
 });

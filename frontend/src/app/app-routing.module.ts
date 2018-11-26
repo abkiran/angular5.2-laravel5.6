@@ -4,6 +4,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { BooksIndexComponent }   from './books/books-index/books-index.component';
 import { BooksAddComponent }   from './books/books-add/books-add.component';
 import { BooksUpdateComponent }   from './books/books-update/books-update.component';
+
+import { EeventsIndexComponent }   from './events/events-index/events-index.component';
+import { EeventsAddComponent }   from './events/events-add/events-add.component';
+import { EeventsUpdateComponent }   from './events/events-update/events-update.component';
+
 import { LoginComponent }   from './login/login.component';
 import { LogoutComponent }   from './logout/logout.component';
 import { AboutComponent }   from './about/about.component';
@@ -23,6 +28,15 @@ const routes: Routes = [
   },
   { path: 'book/add', canActivate: [ ProtectedGuard ], component: BooksAddComponent },
   { path: 'book/update/:id', canActivate: [ ProtectedGuard ], component: BooksUpdateComponent },
+
+  {
+    path: 'event',
+    canActivate: [ ProtectedGuard ],
+    component: EventsIndexComponent 
+  },
+  { path: 'event/add', canActivate: [ ProtectedGuard ], component: EventsAddComponent },
+  { path: 'event/update/:id', canActivate: [ ProtectedGuard ], component: EventsUpdateComponent },
+  
   { path: 'login', canActivate: [ PublicGuard ], component: LoginComponent },
   { path: 'logout', canActivate: [ ProtectedGuard ], component: LogoutComponent },
   { path: 'about', component: AboutComponent },
