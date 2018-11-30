@@ -5,9 +5,9 @@ import { BooksIndexComponent }   from './books/books-index/books-index.component
 import { BooksAddComponent }   from './books/books-add/books-add.component';
 import { BooksUpdateComponent }   from './books/books-update/books-update.component';
 
-import { EeventsIndexComponent }   from './events/events-index/events-index.component';
-import { EeventsAddComponent }   from './events/events-add/events-add.component';
-import { EeventsUpdateComponent }   from './events/events-update/events-update.component';
+import { EventsIndexComponent }   from './events/events-index/events-index.component';
+import { EventsAddComponent }   from './events/events-add/events-add.component';
+import { EventsUpdateComponent }   from './events/events-update/events-update.component';
 
 import { LoginComponent }   from './login/login.component';
 import { LogoutComponent }   from './logout/logout.component';

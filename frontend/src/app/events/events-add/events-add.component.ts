@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {BookService} from "./../book.service";
+import {EventService} from "./../event.service";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NotificationService } from './../../shared';
 @Component({
-  selector: 'app-books-add',
-  templateUrl: './books-add.component.html',
-  styleUrls: ['./books-add.component.css']
+  selector: 'app-events-add',
+  templateUrl: './events-add.component.html',
+  styleUrls: ['./events-add.component.css']
 })
-export class BooksAddComponent implements OnInit {
+export class EventsAddComponent implements OnInit {
 
-  bookData = {isbn:'', title:'', author:'', description:'', image:''}
+  eventData = {isbn:'', title:'', author:'', description:'', image:''}
   message = ''
   selectFiles: File = null;
   
   constructor(
     private spinnerService: Ng4LoadingSpinnerService,
-    private bookService: BookService, 
+    private eventService: EventService, 
     private router: Router,
     private notificationService: NotificationService
   ) { }
@@ -29,21 +29,21 @@ export class BooksAddComponent implements OnInit {
     this.selectFiles = <File>event.target.files[0]
   }
 
-  addBook() {
+  addEvent() {
       this.spinnerService.show();
       let fd = new FormData();
-      for(let key in this.bookData){
-          fd.append(key, this.bookData[key])
+      for(let key in this.eventData){
+          fd.append(key, this.eventData[key])
       }
       if(this.selectFiles != null)
       {
          fd.append('image',this.selectFiles,this.selectFiles.name)
       }
-      this.bookService.addBooks(fd)
+      this.eventService.addEvents(fd)
       .subscribe((value) => {
         this.spinnerService.hide();
         this.notificationService.onSuccess('Successfully Added.')
-        this.router.navigateByUrl('book');   
+        this.router.navigateByUrl('event');   
       });
   }
 

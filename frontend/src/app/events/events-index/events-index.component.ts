@@ -2,38 +2,38 @@ import { Component,ViewChild, OnInit } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NotificationService } from './../../shared';
-import { BookService } from "./../book.service";
+import { EventService } from "./../event.service";
 
 
 @Component({
-  selector: 'app-books-index',
-  templateUrl: './books-index.component.html',
-  styleUrls: ['./books-index.component.css']
+  selector: 'app-events-index',
+  templateUrl: './events-index.component.html',
+  styleUrls: ['./events-index.component.css']
 })
-export class BooksIndexComponent implements OnInit {
-  @ViewChild('BookImageModal') BookImageModal: ModalDirective;
+export class EventsIndexComponent implements OnInit {
+  @ViewChild('EventImageModal') EventImageModal: ModalDirective;
   p: number = 1;
-  books = [];
+  events = [];
   errMesg: any;
   totalRecords = 0;
   pageSize = 5;
-  bookImage = '';
+  eventImage = '';
 
   constructor(
     private spinnerService: Ng4LoadingSpinnerService, 
-    private bookService: BookService,
+    private eventService: EventService,
     private notificationService: NotificationService
   ) { }
 
   ngOnInit() {
-  	this.getBook();
+  	this.getEvent();
   }
 
-  getBook(){
+  getEvent(){
     this.spinnerService.show();
-    this.bookService.getBooks(1)
+    this.eventService.getEvents(1)
       .subscribe((response) => {
-        this.books = response.data.data
+        this.events = response.data.data
         this.totalRecords =response.data.total
         this.spinnerService.hide();
       });
@@ -42,28 +42,28 @@ export class BooksIndexComponent implements OnInit {
   getPage($page)
   {
     this.spinnerService.show();
-    this.bookService.getBooks($page)
+    this.eventService.getEvents($page)
       .subscribe((response) => {
-        this.books = response.data.data
+        this.events = response.data.data
         this.totalRecords =response.data.total
         this.p = $page
         this.spinnerService.hide();
       });
   }
 
-  deleteBook($id){
+  deleteEvent($id){
     this.spinnerService.show();
-    this.bookService.deleteBook($id)
+    this.eventService.deleteEvent($id)
       .subscribe(data => {
         this.spinnerService.hide();
         this.notificationService.onSuccess('Successfully Deleted.')
-        this.getBook()
+        this.getEvent()
     })
   }
 
   viewImage(image){
-    this.bookImage = image
-    this.BookImageModal.show()
+    this.eventImage = image
+    this.EventImageModal.show()
   }
 
 }

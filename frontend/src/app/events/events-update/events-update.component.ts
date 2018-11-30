@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import {BookService} from "./../book.service";
+import {EventService} from "./../event.service";
 import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 import { NotificationService } from './../../shared';
 
 @Component({
-  selector: 'app-books-update',
-  templateUrl: './books-update.component.html',
-  styleUrls: ['./books-update.component.css']
+  selector: 'app-events-update',
+  templateUrl: './events-update.component.html',
+  styleUrls: ['./events-update.component.css']
 })
-export class BooksUpdateComponent implements OnInit {
+export class EventsUpdateComponent implements OnInit {
 
-  	bookData = {isbn:'', title:'', author:'', description:'', image:''}
+  	eventData = {isbn:'', title:'', author:'', description:'', image:''}
   	message = ''
   	constructor(
-  		private bookService: BookService, 
+  		private eventService: EventService, 
   		private router: Router,
   		private route: ActivatedRoute,
   		private location: Location,
@@ -24,25 +24,25 @@ export class BooksUpdateComponent implements OnInit {
   	) { }
 
   ngOnInit() {
-  	this.getBookById()
+  	this.getEventById()
   }
-  getBookById(){
+  getEventById(){
     this.spinnerService.show();
   	const $id = this.route.snapshot.paramMap.get('id');
-    this.bookService.getBookById($id)
+    this.eventService.getEventById($id)
       .subscribe((response) => {
-        this.bookData = response.data
+        this.eventData = response.data
         this.spinnerService.hide();
     })
   }
 
-  updateBook() {
+  updateEvent() {
     this.spinnerService.show();
-  	this.bookService.updateBook(this.bookData)
+  	this.eventService.updateEvent(this.eventData)
       .subscribe((value) => {
         this.spinnerService.hide();
         this.notificationService.onSuccess('Successfully Updated.')
-        this.router.navigate(['book']);   
+        this.router.navigate(['event']);   
       });
   }
 }

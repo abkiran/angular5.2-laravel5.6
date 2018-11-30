@@ -14,35 +14,35 @@ export class EventService {
     private environmentService: EnvironmentService
   ) {}
 
-  getBooks(page){
+  getEvents(page){
     let url = this.environmentService.setApiServiceWithPage('event', page)
     return this._http.get(url)
         .map(res=> res)
         .catch(this.handleError)
   }
 
-  getBookById($id){
+  getEventById($id){
     let url = this.environmentService.setApiServiceById('event', $id)
     return this._http.get(url)
         .map(res=> res)
         .catch(this.handleError)
   }
 
-  addBooks(eventData){
+  addEvents(eventData){
     let url = this.environmentService.setApiService('event')
     return this._http.post(url, eventData)
         .map(res=> res)
         .catch(this.handleError)
   }
 
-  updateBook(eventData){
+  updateEvent(eventData){
     let url = this.environmentService.setApiServiceById('event', eventData.id)
     return this._http.put(url, eventData)
         .map(res=> res)
         .catch(this.handleError)
   }
 
-  deleteBook($id){
+  deleteEvent($id){
     let url = this.environmentService.setApiServiceById('event', $id)
     return this._http.delete(url)
         .map(res=> res)

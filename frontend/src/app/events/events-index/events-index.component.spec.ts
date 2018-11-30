@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BooksIndexComponent } from './books-index.component';
+import { EventsIndexComponent } from './events-index.component';
 
-describe('BooksIndexComponent', () => {
-  let component: BooksIndexComponent;
-  let fixture: ComponentFixture<BooksIndexComponent>;
+describe('EventsIndexComponent', () => {
+  let component: EventsIndexComponent;
+  let fixture: ComponentFixture<EventsIndexComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BooksIndexComponent ]
+      declarations: [ EventsIndexComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BooksIndexComponent);
+    fixture = TestBed.createComponent(EventsIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
